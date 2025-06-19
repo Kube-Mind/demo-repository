@@ -15,7 +15,7 @@ spec:
   destinations:
     - namespace: 'argo-cd'
       server: '*'
-    - namespace: 'kube-system'
+    - namespace: 'external-secrets'
       server: '*'
   clusterResourceWhitelist:
     - group: '*'
