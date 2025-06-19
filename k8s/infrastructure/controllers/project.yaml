@@ -4,7 +4,8 @@ metadata:
   name: controllers
   namespace: argo-cd
   labels:
-    appproject: controllers
+    app.kubernetes.io/part-of: controllers
+    app.kubernetes.io/managed-by: argo-cd
 spec:
   description: Project for core infrastructure controllers
   sourceRepos:
