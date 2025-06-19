@@ -2,8 +2,9 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   namespace: argo-cd
-  name: infrastructure
+  name: controllers
   labels:
+    app.kubernetes.io/component: 'controllers'
     app.kubernetes.io/part-of: infrastructure
     app.kubernetes.io/managed-by: argo-cd
   annotations:
