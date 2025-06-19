@@ -1,0 +1,11 @@
+---
+apiVersion: k3d.io/v1alpha5
+kind: Simple
+metadata:
+  name: ha-cluster
+servers: 3  # Control plane nodes
+agents: 3   # Worker nodes
+options:
+  k3d:
+    wait: true
+    timeout: "60s"
