@@ -1,2 +1,7 @@
 enabled: true
 fullnameOverride: argo-cd
+
+configs:
+  cm:
+    kustomize.buildOptions: --enable-helm
+    statusbadge.enabled: true
