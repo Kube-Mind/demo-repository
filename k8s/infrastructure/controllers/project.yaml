@@ -2,15 +2,15 @@ apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
   name: controllers
-  namespace: argocd
+  namespace: argo-cd
   labels:
     appproject: controllers
 spec:
   description: Project for core infrastructure controllers
   sourceRepos:
-    - 'https://github.com/theepicsaxguy/homelab'
+    - 'https://github.com/Kube-Mind/demo-repository.git'
   destinations:
-    - namespace: 'argocd'
+    - namespace: 'argo-cd'
       server: '*'
     - namespace: 'kube-system'
       server: '*'
