@@ -31,7 +31,7 @@ spec:
         path: '{{ path }}'
         kustomize: {} # Let Kustomize handle naming
       destination:
-        namespace: infrastructure-system
+        namespace: '{{ path.basename }}'
         server: https://kubernetes.default.svc
       syncPolicy:
         automated:
