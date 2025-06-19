@@ -6,6 +6,8 @@ metadata:
   labels:
     app.kubernetes.io/part-of: controllers
     app.kubernetes.io/managed-by: argo-cd
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
 spec:
   description: Project for core infrastructure controllers
   sourceRepos:
