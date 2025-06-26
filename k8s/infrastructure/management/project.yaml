@@ -17,7 +17,7 @@ spec:
       server: '*'
     - namespace: 'external-secrets'
       server: '*'
-    - namespace: 'k3s-upgrader'
+    - namespace: 'system-upgrade'
       server: '*'
   clusterResourceWhitelist:
     - group: '*'
