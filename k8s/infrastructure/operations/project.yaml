@@ -13,7 +13,7 @@ spec:
   sourceRepos:
     - 'https://github.com/Kube-Mind/demo-repository.git'
   destinations:
-    - namespace: 'k3s-upgrader-plans'
+    - namespace: 'system-upgrade'
       server: '*'
   clusterResourceWhitelist:
     - group: '*'
