@@ -7,30 +7,30 @@ metadata:
     app.kubernetes.io/part-of: main
     app.kubernetes.io/managed-by: argo-cd
   annotations:
-    argocd.argoproj.io/sync-wave: '-10'
+    argocd.argoproj.io/sync-wave: '10'
 spec:
   generators:
     - git:
         repoURL: https://github.com/Kube-Mind/demo-repository.git
         revision: main
         directories:
-          - path: k8s/
+          - path: k8s/*
   template:
     metadata:
-      name: 'infra-{{ path.basename }}'
+      name: '{{ path.basename }}'
       namespace: argo-cd
       labels:
         app.kubernetes.io/component: '{{ path.basename }}'
         app.kubernetes.io/part-of: main
     spec:
-      project: default
+      project: '{{ path.basename }}'
       source:
         repoURL: https://github.com/Kube-Mind/demo-repository.git
         targetRevision: main
         path: '{{ path }}'
         kustomize: {} # Let Kustomize handle naming
       destination:
-        namespace: main
+        namespace: '{{ path.basename }}'
         server: https://kubernetes.default.svc
       syncPolicy:
         automated:

@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+  labels:
+    app.kubernetes.io/part-of: main
+    app.kubernetes.io/managed-by: argo-cd
+  name: main
+  namespace: argo-cd
+spec:
+  destination:
+    namespace: argo-cd
+    server: https://kubernetes.default.svc
+  project: default
+  sources:
+    - path: k8s/
+      repoURL: https://github.com/Kube-Mind/demo-repository.git
+      targetRevision: main
+      kustomization: {}
+  syncPolicy:
+    automated:
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
