@@ -13,9 +13,7 @@ spec:
   sourceRepos:
     - 'https://github.com/Kube-Mind/demo-repository.git'
   destinations:
-    - namespace: 'argo-cd'
-      server: '*'
-    - namespace: 'external-secrets'
+    - namespace: 'k3s-upgrader-plans'
       server: '*'
   clusterResourceWhitelist:
     - group: '*'
