@@ -1,0 +1,51 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  namespace: argo-cd
+  name: infrastructure
+  labels:
+    app.kubernetes.io/part-of: infrastructure
+    app.kubernetes.io/managed-by: argo-cd
+  annotations:
+    argocd.argoproj.io/sync-wave: '-10'
+spec:
+  generators:
+    - git:
+        repoURL: https://github.com/Kube-Mind/demo-repository.git
+        revision: main
+        directories:
+          - path: k8s/infrastructure/controllers
+          - path: k8s/infrastructure/network
+  template:
+    metadata:
+      name: 'infra-{{ path.basename }}'
+      namespace: argo-cd
+      labels:
+        app.kubernetes.io/component: 'static-infrastructure'
+        app.kubernetes.io/part-of: infrastructure
+    spec:
+      project: infrastructure
+      source:
+        repoURL: https://github.com/Kube-Mind/demo-repository.git
+        targetRevision: main
+        path: '{{ path }}'
+        kustomize: {} # Let Kustomize handle naming
+      destination:
+        namespace: infrastructure
+        server: https://kubernetes.default.svc
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        retry:
+          limit: 1
+          backoff:
+            duration: 10s
+            factor: 2
+            maxDuration: 3m
+        syncOptions:
+          - CreateNamespace=true
+          - ApplyOutOfSyncOnly=true
+          - ServerSideApply=true
+          - PruneLast=true
+          - RespectIgnoreDifferences=true
