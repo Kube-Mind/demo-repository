@@ -17,7 +17,7 @@ spec:
     - path: k8s/
       repoURL: https://github.com/Kube-Mind/demo-repository.git
       targetRevision: main
-      kustomization: {}
+      kustomize: {} # Let Kustomize handle naming
   syncPolicy:
     automated:
       selfHeal: true
