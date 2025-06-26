@@ -26,8 +26,8 @@ spec:
     spec:
       project: management
       source:
-        repoURL: '{{ repoURL }}'
-        targetRevision: '{{ revision }}'
+        repoURL: https://github.com/Kube-Mind/demo-repository.git
+        targetRevision: main
         path: '{{ path }}'
         kustomize: {} # Let Kustomize handle naming
       destination:

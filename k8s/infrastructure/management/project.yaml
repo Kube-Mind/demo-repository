@@ -1,15 +1,15 @@
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
-  name: controllers
+  name: management
   namespace: argo-cd
   labels:
-    app.kubernetes.io/part-of: controllers
+    app.kubernetes.io/part-of: management
     app.kubernetes.io/managed-by: argo-cd
   annotations:
     argocd.argoproj.io/sync-wave: "0"
 spec:
-  description: Project for core infrastructure controllers
+  description: Project for core infrastructure management
   sourceRepos:
     - 'https://github.com/Kube-Mind/demo-repository.git'
   destinations:
