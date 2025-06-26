@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: operations
+  namespace: argo-cd
+  labels:
+    app.kubernetes.io/part-of: operations
+    app.kubernetes.io/managed-by: argo-cd
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+spec:
+  description: Project for core infrastructure operations
+  sourceRepos:
+    - 'https://github.com/Kube-Mind/demo-repository.git'
+  destinations:
+    - namespace: 'argo-cd'
+      server: '*'
+    - namespace: 'external-secrets'
+      server: '*'
+  clusterResourceWhitelist:
+    - group: '*'
+      kind: '*'

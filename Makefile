@@ -15,15 +15,16 @@ ARGOCD_NAMESPACE=argo-cd
 ARGOCD_VALUES=./k8s/argo-cd/values.yaml
 ARGOCD_PASSWORD=$$(kubectl -n $(ARGOCD_NAMESPACE) get secret argocd-initial-admin-secret -o yaml | grep -o 'password: .*' | sed -e s"/password\: //g" | base64 -d)
 argocd-install:
-	helm -n $(ARGOCD_NAMESPACE) upgrade --install --create-namespace argo-cd argo/argo-cd --reuse-values --values=$(ARGOCD_VALUES)
+	kustomize build --enable-helm k8s/infrastructure/management/argo-cd | kubectl apply -f -
 	$(MAKE) argocd-wait
 
 argocd-clean:
 	helm -n $(ARGOCD_NAMESPACE) uninstall argo-cd || true
-argocd-wait:
-	kubectl -n $(ARGOCD_NAMESPACE) wait -l app.kubernetes.io/name=argo-cd-server --for=condition=ready pod --timeout=360s
 
-argocd-proxy:
+argocd-wait:
+	kubectl -n $(ARGOCD_NAMESPACE) wait -l app.kubernetes.io/name=argocd-server --for=condition=ready pod --timeout=360s
+
+argocd-proxy: argocd-password
 	kubectl -n $(ARGOCD_NAMESPACE) port-forward svc/argo-cd-server 8080:80
 
 argocd-password:
