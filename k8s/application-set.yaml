@@ -23,7 +23,7 @@ spec:
         app.kubernetes.io/component: '{{ path.basename }}'
         app.kubernetes.io/part-of: main
     spec:
-      project: '{{ path.basename }}'
+      project: default
       source:
         repoURL: https://github.com/Kube-Mind/demo-repository.git
         targetRevision: main
