@@ -3,8 +3,7 @@ kind: Kustomization
 
 resources:
 - project.yaml
-- rabbitmq
-# - application-set.yaml
+- application-set.yaml
 
 generatorOptions:
   disableNameSuffixHash: true

@@ -3,5 +3,4 @@ kind: Kustomization
 
 resources:
 - project.yaml
-- system-upgrade-plans
-# - application-set.yaml
+- application-set.yaml
