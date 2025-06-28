@@ -3,4 +3,7 @@ kind: Kustomization
 
 resources:
 - project.yaml
-- application-set.yaml
+- argo-cd
+- external-secrets
+- system-upgrade
+# - application-set.yaml
