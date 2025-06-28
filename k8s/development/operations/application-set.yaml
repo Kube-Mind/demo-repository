@@ -29,7 +29,7 @@ spec:
         app.kubernetes.io/component: operations
         app.kubernetes.io/part-of: development
     spec:
-      project: development
+      project: dev-operations
       source:
         repoURL: https://github.com/Kube-Mind/demo-repository.git
         targetRevision: main
