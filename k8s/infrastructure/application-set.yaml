@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  namespace: infrastructure
+  namespace: argo-cd
   name: infrastructure
   labels:
     app.kubernetes.io/instance: infrastructure
