@@ -38,8 +38,6 @@ spec:
       destination:
         namespace: '{{ path.basename }}'
         server: https://kubernetes.default.svc
-      orphanedResources:
-        warn: true
       syncPolicy:
         automated:
           prune: true
