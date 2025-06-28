@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  namespace: argo-cd
+  namespace: infrastructure
   name: infrastructure
   labels:
     app.kubernetes.io/instance: infrastructure
@@ -36,7 +36,7 @@ spec:
         path: '{{ path }}'
         kustomize: {} # Let Kustomize handle naming
       destination:
-        namespace: argo-cd
+        namespace: 'infra-{{ path.basename }}'
         server: https://kubernetes.default.svc
       syncPolicy:
         automated:

@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  namespace: argo-cd
+  namespace: infra-operations
   name: infra-operations
   labels:
     app.kubernetes.io/instance: 'infra-operations'
@@ -21,7 +21,7 @@ spec:
   template:
     metadata:
       name: '{{ path.basename }}'
-      namespace: argo-cd
+      namespace: '{{ path.basename }}'
       annotations:
         argocd.argoproj.io/tracking-id: infra-operations:argoproj.io/Application:argo-cd/{{ path.basename }}
       labels:

@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  namespace: argo-cd
+  namespace: dev-management
   name: dev-management
   labels:
     app.kubernetes.io/instance: dev-management
@@ -21,7 +21,7 @@ spec:
   template:
     metadata:
       name: '{{ path.basename }}'
-      namespace: argo-cd
+      namespace: '{{ path.basename }}'
       annotations:
         argocd.argoproj.io/tracking-id: dev-management:argoproj.io/Application:argo-cd/{{ path.basename }}
       labels:
@@ -36,7 +36,7 @@ spec:
         path: '{{ path }}'
         kustomize: {} # Let Kustomize handle naming
       destination:
-        namespace: argo-cd
+        namespace: '{{ path.basename }}'
         server: https://kubernetes.default.svc
       syncPolicy:
         automated:
