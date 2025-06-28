@@ -2,5 +2,44 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:recommended"
-  ]
+  ],
+  "dependencyDashboard": true,
+  "kustomize": {
+    "managerFilePatterns": ["/(^|/)kustomization\\.ya?ml(\\.j2)?$/"]
+  },
+  "helm-values": {
+    "managerFilePatterns": ["/k8s/.+/values\\.yaml$/"]
+  },
+  "customManagers": [
+    {
+      "customType": "regex",
+      "managerFilePatterns": [
+        "/\\.tf$/",
+        "/\\.tftpl$/",
+        "/\\.yaml$/",
+        "/\\.sh$/"
+      ],
+      "matchStrings": [
+        "(?<currentValue>[\\w+\\.\\-]*)['\",;]*\\s*#\\s?renovate: (?<datasource>\\S+)=(?<depName>\\S+)\\s?(registry=(?<registryUrl>\\S+))?\\s?(versioning=(?<versioning>\\S+))?"
+      ]
+    }
+  ],
+  "packageRules": [
+    {
+      "matchManagers": ["helm-values", "helm-requirements"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "automerge": true
+    },
+    {
+      "groupName": "external-secrets",
+      "matchPackageNames": ["/^ghcr.io/external-secrets//"]
+    },
+    {
+      "groupName": "all dependencies",
+      "matchPackageNames": ["*"]
+    }
+  ],
+  "kubernetes": {
+    "managerFilePatterns": ["/k8s/.+\\.yaml$/", "/k8s/.+\\.yml$/"]
+  }
 }
