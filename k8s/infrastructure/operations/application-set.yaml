@@ -4,6 +4,7 @@ metadata:
   namespace: argo-cd
   name: infra-operations
   labels:
+    app.kubernetes.io/instance: 'infra-operations'
     app.kubernetes.io/component: 'operations'
     app.kubernetes.io/part-of: infrastructure
     app.kubernetes.io/managed-by: argo-cd
@@ -23,10 +24,11 @@ spec:
       annotations:
         argocd.argoproj.io/tracking-id: infra-management:argoproj.io/Application:argo-cd/{{ path.basename }}
       labels:
+        app.kubernetes.io/instance: '{{ path.basename }}'
         app.kubernetes.io/component: 'operations'
         app.kubernetes.io/part-of: infrastructure
     spec:
-      project: operations
+      project: infra-operations
       source:
         repoURL: https://github.com/Kube-Mind/demo-repository.git
         targetRevision: main

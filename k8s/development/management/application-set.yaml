@@ -4,6 +4,8 @@ metadata:
   namespace: argo-cd
   name: dev-management
   labels:
+    app.kubernetes.io/instance: dev-management
+    app.kubernetes.io/component: management
     app.kubernetes.io/part-of: development
     app.kubernetes.io/managed-by: argo-cd
   annotations:
@@ -23,7 +25,8 @@ spec:
       annotations:
         argocd.argoproj.io/tracking-id: development:argoproj.io/Application:argo-cd/{{ path.basename }}
       labels:
-        app.kubernetes.io/component: '{{ path.basename }}'
+        app.kubernetes.io/instance: '{{ path.basename }}'
+        app.kubernetes.io/component: management
         app.kubernetes.io/part-of: development
     spec:
       project: development

@@ -4,6 +4,7 @@ metadata:
   namespace: argo-cd
   name: infra-management
   labels:
+    app.kubernetes.io/instance: 'infra-management'
     app.kubernetes.io/component: 'management'
     app.kubernetes.io/part-of: infrastructure
     app.kubernetes.io/managed-by: argo-cd
@@ -23,10 +24,11 @@ spec:
       annotations:
         argocd.argoproj.io/tracking-id: infra-management:argoproj.io/Application:argo-cd/{{ path.basename }}
       labels:
+        app.kubernetes.io/instance: '{{ path.basename }}'
         app.kubernetes.io/component: 'management'
         app.kubernetes.io/part-of: infrastructure
     spec:
-      project: management
+      project: infra-management
       source:
         repoURL: https://github.com/Kube-Mind/demo-repository.git
         targetRevision: main

@@ -1,13 +1,16 @@
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
-  name: management
+  name: infra-management
   namespace: argo-cd
   labels:
-    app.kubernetes.io/part-of: management
+    app.kubernetes.io/instance: 'infra-management'
+    app.kubernetes.io/component: management
+    app.kubernetes.io/part-of: infrastructure
     app.kubernetes.io/managed-by: argo-cd
   annotations:
     argocd.argoproj.io/sync-wave: "0"
+    argocd.argoproj.io/tracking-id: infrastructure:argoproj.io/Application:argo-cd/{{ path.basename }}
 spec:
   description: Project for core infrastructure management
   sourceRepos:

@@ -4,7 +4,8 @@ metadata:
   namespace: argo-cd
   name: infrastructure
   labels:
-    app.kubernetes.io/part-of: infrastructure
+    app.kubernetes.io/instance: infrastructure
+    app.kubernetes.io/part-of: main
     app.kubernetes.io/managed-by: argo-cd
   annotations:
     argocd.argoproj.io/sync-wave: '10'
@@ -23,8 +24,9 @@ spec:
       annotations:
         argocd.argoproj.io/tracking-id: infrastructure:argoproj.io/Application:argo-cd/{{ path.basename }}
       labels:
-        app.kubernetes.io/component: '{{ path.basename }}'
-        app.kubernetes.io/part-of: infrastructure
+        app.kubernetes.io/instance: '{{ path.basename }}'
+        app.kubernetes.io/component: infrastructure
+        app.kubernetes.io/part-of: main
     spec:
       project: infrastructure
       source:
