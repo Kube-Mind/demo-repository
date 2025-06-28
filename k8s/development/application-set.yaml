@@ -5,6 +5,7 @@ metadata:
   name: development
   labels:
     app.kubernetes.io/instance: development
+    app.kubernetes.io/part-of: main
     app.kubernetes.io/managed-by: argo-cd
   annotations:
     argocd.argoproj.io/sync-wave: '10'

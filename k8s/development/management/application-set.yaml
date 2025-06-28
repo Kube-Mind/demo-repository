@@ -10,14 +10,14 @@ metadata:
     app.kubernetes.io/managed-by: argo-cd
   annotations:
     argocd.argoproj.io/sync-wave: '10'
+    argocd.argoproj.io/tracking-id: development:argoproj.io/Application:argo-cd/dev-management
 spec:
   generators:
     - git:
         repoURL: https://github.com/Kube-Mind/demo-repository.git
         revision: main
         directories:
-          - path: k8s/development/management
-          - path: k8s/development/operations
+          - path: k8s/development/management/*
   template:
     metadata:
       name: 'dev-{{ path.basename }}'
