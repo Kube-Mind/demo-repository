@@ -9,12 +9,9 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: '10'
 spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
   generators:
-    - git:
-        repoURL: https://github.com/Kube-Mind/demo-repository.git
-        revision: main
-        directories:
-          - path: k8s/*
     - list:
         elements:
         - name: infra-management
