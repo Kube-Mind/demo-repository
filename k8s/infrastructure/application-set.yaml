@@ -9,6 +9,7 @@ metadata:
     app.kubernetes.io/managed-by: argo-cd
   annotations:
     argocd.argoproj.io/sync-wave: '10'
+    argocd.argoproj.io/tracking-id: main:argoproj.io/Application:argo-cd/infrastructure
 spec:
   generators:
     - git:
@@ -22,7 +23,7 @@ spec:
       name: 'infra-{{ path.basename }}'
       namespace: argo-cd
       annotations:
-        argocd.argoproj.io/tracking-id: infrastructure:argoproj.io/Application:argo-cd/{{ path.basename }}
+        argocd.argoproj.io/tracking-id: infrastructure:argoproj.io/Application:argo-cd/infra-{{ path.basename }}
       labels:
         app.kubernetes.io/instance: '{{ path.basename }}'
         app.kubernetes.io/component: infrastructure

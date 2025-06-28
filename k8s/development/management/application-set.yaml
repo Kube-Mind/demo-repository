@@ -23,7 +23,7 @@ spec:
       name: 'dev-{{ path.basename }}'
       namespace: argo-cd
       annotations:
-        argocd.argoproj.io/tracking-id: development:argoproj.io/Application:argo-cd/{{ path.basename }}
+        argocd.argoproj.io/tracking-id: dev-management:argoproj.io/Application:argo-cd/{{ path.basename }}
       labels:
         app.kubernetes.io/instance: '{{ path.basename }}'
         app.kubernetes.io/component: management
