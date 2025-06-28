@@ -15,11 +15,7 @@ spec:
   sourceRepos:
     - 'https://github.com/Kube-Mind/demo-repository.git'
   destinations:
-    - namespace: 'argo-cd'
-      server: '*'
-    - namespace: 'external-secrets'
-      server: '*'
-    - namespace: 'system-upgrade'
+    - namespace: 'rabbitmq'
       server: '*'
   clusterResourceWhitelist:
     - group: '*'
