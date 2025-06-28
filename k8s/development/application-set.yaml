@@ -21,7 +21,7 @@ spec:
   template:
     metadata:
       name: 'dev-{{ path.basename }}'
-      namespace: argo-cd
+      namespace: 'dev-{{ path.basename }}'
       annotations:
         argocd.argoproj.io/tracking-id: development:argoproj.io/Application:argo-cd/dev-{{ path.basename }}
       labels:

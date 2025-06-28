@@ -21,7 +21,7 @@ spec:
   template:
     metadata:
       name: 'infra-{{ path.basename }}'
-      namespace: argo-cd
+      namespace: 'infra-{{ path.basename }}'
       annotations:
         argocd.argoproj.io/tracking-id: infrastructure:argoproj.io/Application:argo-cd/infra-{{ path.basename }}
       labels:
