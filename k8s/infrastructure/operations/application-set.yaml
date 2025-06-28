@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   namespace: argo-cd
-  name: operations
+  name: infra-operations
   labels:
     app.kubernetes.io/component: 'operations'
     app.kubernetes.io/part-of: infrastructure
