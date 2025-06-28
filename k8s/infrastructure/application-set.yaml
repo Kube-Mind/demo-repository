@@ -20,6 +20,8 @@ spec:
     metadata:
       name: 'infra-{{ path.basename }}'
       namespace: argo-cd
+      annotations:
+        argocd.argoproj.io/tracking-id: infrastructure:argoproj.io/Application:argo-cd/{{ path.basename }}
       labels:
         app.kubernetes.io/component: '{{ path.basename }}'
         app.kubernetes.io/part-of: infrastructure

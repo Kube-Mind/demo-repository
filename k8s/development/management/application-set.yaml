@@ -2,9 +2,9 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   namespace: argo-cd
-  name: main
+  name: development
   labels:
-    app.kubernetes.io/part-of: main
+    app.kubernetes.io/part-of: development
     app.kubernetes.io/managed-by: argo-cd
   annotations:
     argocd.argoproj.io/sync-wave: '10'
@@ -14,25 +14,26 @@ spec:
         repoURL: https://github.com/Kube-Mind/demo-repository.git
         revision: main
         directories:
-          - path: k8s/*
+          - path: k8s/development/management
+          - path: k8s/development/operations
   template:
     metadata:
-      name: '{{ path.basename }}'
+      name: 'infra-{{ path.basename }}'
       namespace: argo-cd
       annotations:
-        argocd.argoproj.io/tracking-id: default:argoproj.io/Application:argo-cd/{{ path.basename }}
+        argocd.argoproj.io/tracking-id: development:argoproj.io/Application:argo-cd/{{ path.basename }}
       labels:
         app.kubernetes.io/component: '{{ path.basename }}'
-        app.kubernetes.io/part-of: main
+        app.kubernetes.io/part-of: development
     spec:
-      project: default
+      project: development
       source:
         repoURL: https://github.com/Kube-Mind/demo-repository.git
         targetRevision: main
         path: '{{ path }}'
         kustomize: {} # Let Kustomize handle naming
       destination:
-        namespace: '{{ path.basename }}'
+        namespace: argo-cd
         server: https://kubernetes.default.svc
       syncPolicy:
         automated:
