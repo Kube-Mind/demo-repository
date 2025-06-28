@@ -20,7 +20,7 @@ spec:
           - path: k8s/development/operations
   template:
     metadata:
-      name: '{{ path.basename }}'
+      name: 'dev-{{ path.basename }}'
       namespace: argo-cd
       annotations:
         argocd.argoproj.io/tracking-id: development:argoproj.io/Application:argo-cd/{{ path.basename }}
