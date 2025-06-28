@@ -1,10 +1,10 @@
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
-  name: dev-operations
+  name: dev-management
   namespace: argo-cd
   labels:
-    app.kubernetes.io/component: operations
+    app.kubernetes.io/component: management
     app.kubernetes.io/part-of: development
     app.kubernetes.io/managed-by: argo-cd
   annotations:
