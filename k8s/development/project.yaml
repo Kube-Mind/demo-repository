@@ -39,5 +39,3 @@ spec:
       applications:
         - '*'
       manualSync: true
-  orphanedResources:
-    warn: true
