@@ -2,31 +2,31 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   namespace: argo-cd
-  name: dev-management
+  name: dev-operations
   labels:
-    app.kubernetes.io/instance: dev-management
-    app.kubernetes.io/component: management
+    app.kubernetes.io/instance: dev-operations
+    app.kubernetes.io/component: operations
     app.kubernetes.io/part-of: development
     app.kubernetes.io/managed-by: argo-cd
   annotations:
     argocd.argoproj.io/sync-wave: '40'
-    argocd.argoproj.io/tracking-id: development:argoproj.io/Application:argo-cd/dev-management
+    argocd.argoproj.io/tracking-id: development:argoproj.io/Application:argo-cd/dev-operations
 spec:
   generators:
     - git:
         repoURL: https://github.com/Kube-Mind/demo-repository.git
         revision: main
         directories:
-          - path: k8s/development/management/*
+          - path: k8s/development/operations/*
   template:
     metadata:
       name: '{{ path.basename }}'
       namespace: '{{ path.basename }}'
       annotations:
-        argocd.argoproj.io/tracking-id: dev-management:argoproj.io/Application:argo-cd/{{ path.basename }}
+        argocd.argoproj.io/tracking-id: dev-operations:argoproj.io/Application:argo-cd/{{ path.basename }}
       labels:
         app.kubernetes.io/instance: '{{ path.basename }}'
-        app.kubernetes.io/component: management
+        app.kubernetes.io/component: operations
         app.kubernetes.io/part-of: development
     spec:
       project: development

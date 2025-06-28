@@ -1,17 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
-  name: dev-management
+  name: dev-operations
   namespace: argo-cd
   labels:
-    app.kubernetes.io/component: management
+    app.kubernetes.io/component: operations
     app.kubernetes.io/part-of: development
     app.kubernetes.io/managed-by: argo-cd
   annotations:
     argocd.argoproj.io/sync-wave: "0"
     argocd.argoproj.io/tracking-id: development:argoproj.io/Application:argo-cd/{{ path.basename }}
 spec:
-  description: Project for core development management
+  description: Project for core development operations
   sourceRepos:
     - 'https://github.com/Kube-Mind/demo-repository.git'
   destinations:
