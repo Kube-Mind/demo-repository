@@ -15,24 +15,38 @@ spec:
         revision: main
         directories:
           - path: k8s/*
+    - list:
+        elements:
+        - name: infra-management
+          group: infrastructure
+          component: management
+        - name: infra-operations
+          group: infrastructure
+          component: operations
+        - name: dev-operations
+          group: development
+          component: operations
+        - name: dev-operations
+          group: development
+          component: operations
   template:
     metadata:
-      name: '{{ path.basename }}'
-      namespace: '{{ path.basename }}'
+      name: '{{ .name }}'
+      namespace: '{{ .name }}'
       annotations:
-        argocd.argoproj.io/tracking-id: default:argoproj.io/Application:argo-cd/{{ path.basename }}
+        argocd.argoproj.io/tracking-id: default:argoproj.io/Application:argo-cd/{{ .name }}
       labels:
-        app.kubernetes.io/component: '{{ path.basename }}'
-        app.kubernetes.io/part-of: main
+        app.kubernetes.io/component: '{{ .component }}'
+        app.kubernetes.io/part-of: '{{ .group }}'
     spec:
       project: default
       source:
         repoURL: https://github.com/Kube-Mind/demo-repository.git
         targetRevision: main
-        path: '{{ path }}'
+        path: 'k8s/{{ .group }}/{{ .component }}'
         kustomize: {} # Let Kustomize handle naming
       destination:
-        namespace: '{{ path.basename }}'
+        namespace: '{{ .group }}'
         server: https://kubernetes.default.svc
       syncPolicy:
         automated:
