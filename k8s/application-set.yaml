@@ -22,7 +22,7 @@ spec:
           component: operations
         - name: dev-management
           group: development
-          component: operations
+          component: management
         - name: dev-operations
           group: development
           component: operations
