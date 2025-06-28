@@ -18,6 +18,8 @@ spec:
       repoURL: https://github.com/Kube-Mind/demo-repository.git
       targetRevision: main
       kustomize: {} # Let Kustomize handle naming
+  orphanedResources:
+    warn: true
   syncPolicy:
     automated:
       selfHeal: true

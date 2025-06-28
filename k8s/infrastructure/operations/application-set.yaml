@@ -23,7 +23,7 @@ spec:
       name: '{{ path.basename }}'
       namespace: argo-cd
       annotations:
-        argocd.argoproj.io/tracking-id: infra-management:argoproj.io/Application:argo-cd/{{ path.basename }}
+        argocd.argoproj.io/tracking-id: infra-operations:argoproj.io/Application:argo-cd/{{ path.basename }}
       labels:
         app.kubernetes.io/instance: '{{ path.basename }}'
         app.kubernetes.io/component: 'operations'
@@ -38,6 +38,8 @@ spec:
       destination:
         namespace: '{{ path.basename }}'
         server: https://kubernetes.default.svc
+      orphanedResources:
+        warn: true
       syncPolicy:
         automated:
           prune: true
